@@ -10,7 +10,9 @@ public class CalendarioImpl implements Calendario{
 
 	@Override
 	public List<Ingrediente> lista() {
-		return ;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 }
