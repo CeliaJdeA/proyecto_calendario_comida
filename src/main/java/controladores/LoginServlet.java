@@ -14,8 +14,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/iniciar-sesion")
 public class LoginServlet extends HttpServlet{
-	 final static String USERNAME = "admin";
-	 final static String PASSWORD = "12345";
+	 final static String USERNAME = "calendario";
+	 final static String PASSWORD = "comidas";
 	    
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,19 +31,22 @@ public class LoginServlet extends HttpServlet{
 	                out.println("<html>");
 	                out.println("    <head>");
 	                out.println("        <meta charset=\"UTF-8\">");
-	                out.println("        <title>Hola " + cookieOptional.get() + "</title>");
+	                out.println("        <title>Hola " + cookieOptional.get().getValue() + "</title>");
 	                out.println("    </head>");
 	                out.println("    <body>"); 
-	                out.println("        <h1>Hola " + cookieOptional.get() + " has iniciado sesión con éxito!</h1>");
-//	                out.println("<p><a href='" + req.getContextPath() + "/index.html'>volver</a></p>"); // Enlace para VOLVER o CERRAR SESIÓN
+	                out.println("        <h3>Hola " + cookieOptional.get().getValue() + " has iniciado sesión con éxito!</h3>");
+	                out.println("<p><a href='" + req.getContextPath() + "/index.html'>volver</a></p>");
+	                out.println("<p><a href='" + req.getContextPath() + "/inicio.jsp'>Inicio</a)</p>");
 //	                out.println("<p><a href='" + req.getContextPath() + "/logout'>cerrar sesión</a></p>");
 	                out.println("    </body>");
 	                out.println("</html>");
 	            } 
-		 }else {
-			 getServletContext().getRequestDispatcher("/login.html").forward(req, resp);
+		 } else {
+			getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+			
+	        }
 		 }
-	}
+
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -56,7 +59,7 @@ public class LoginServlet extends HttpServlet{
             resp.addCookie(usernameCookie); 
 
 
-            resp.sendRedirect(req.getContextPath() + "/login.html");
+            resp.sendRedirect(req.getContextPath() + "/iniciar-sesion");
         } else {
             resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Lo sentimos no esta autorizado para ingresar a esta página!");
         }

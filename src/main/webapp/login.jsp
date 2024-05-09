@@ -1,11 +1,12 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Iniciar sesión</title>
+<meta charset="UTF-8">
+<title>Iniciar sesiÃ³n</title>
 </head>
 <body>
-	<h1>Iniciar sesión</h1>
+	<h1>Iniciar sesiÃ³n</h1>
 	<form action="/comidas/iniciar-sesion" method="post">
 	  <div>
 	    <label for="username">Username</label>
