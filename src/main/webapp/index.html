@@ -1,14 +1,44 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Home</title>
+    <meta charset="ISO-8859-1">
+    <title>Home</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            flex-direction: column; /* Para que los elementos se apilen verticalmente */
+            background-image: url('https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg'); /* Cambia 'ruta/a/imagen.jpg' por la ruta de tu imagen de fondo */
+            background-size: cover; /* Para que la imagen de fondo cubra todo el cuerpo */
+            background-position: center; /* Centra la imagen de fondo */
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px; /* Espacio entre el encabezado y el botón */
+            font-size: 35px;
+        }
+        .boton {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #000;
+            border-radius: 15px; /* Bordes un poco menos redondeados */
+            text-decoration: none;
+            color: #000;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .boton:hover {
+            background-color: #eee;
+        }
+    </style>
 </head>
 <body>
-	<h2>Entrar</h2>
-	<ul>
-		<li><a href="/comidas/login.jsp">Iniciar sesión</a></li>		
-		
-	</ul>
+    <h2>Organiza tu semana culinaria con nuestro Calendario interactivo</h2>
+    
+        <a class="boton" href="/comidas/login.jsp">Entrar</a>  
+   
 </body>
 </html>
