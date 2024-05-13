@@ -2,9 +2,9 @@ package negocio;
 
 import java.util.List;
 
-import modelo.Ingrediente;
+import modelo.IngredienteMySQL;
 
 public interface Calendario {
 
-	List<Ingrediente> lista();
+	List<IngredienteMySQL> lista();
 }

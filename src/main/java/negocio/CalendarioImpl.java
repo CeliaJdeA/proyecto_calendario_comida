@@ -4,12 +4,12 @@ import java.util.List;
 
 import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
-import modelo.Ingrediente;
+import modelo.IngredienteMySQL;
 
 public class CalendarioImpl implements Calendario{
 
 	@Override
-	public List<Ingrediente> lista() {
+	public List<IngredienteMySQL> lista() {
 		// TODO Auto-generated method stub
 		return null;
 	}

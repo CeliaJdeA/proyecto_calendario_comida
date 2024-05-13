@@ -63,12 +63,23 @@
             <div>
                 <input type="text" name="username" id="username">
             </div>
+            <%-- Aquí se mostrará el mensaje de error del nombre de usuario --%>
+            <%-- Para evitar que aparezcan null, puedes realizar una verificación en tu JSP antes de mostrar los mensajes de error --%>
+            <% String usernameError = (String) request.getAttribute("usernameError");
+       			if (usernameError != null) { %>
+           		<span style="color: red;"><%= usernameError %></span><br>
+    		<% } %>
         </div>
         <div>
             <label for="password">Contraseña</label>
             <div>
                 <input type="password" name="password" id="password">
             </div>
+           <%--  Aquí se mostrará el mensaje de error de la contraseña--%>
+           <% String passwordError = (String) request.getAttribute("passwordError");
+       			if (passwordError != null) { %>
+           		<span style="color: red;"><%= passwordError %></span><br>
+   		   <% } %>
         </div>
         <div>
             <input type="submit" value="Entrar">
