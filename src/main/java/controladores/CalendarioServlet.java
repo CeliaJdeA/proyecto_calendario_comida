@@ -22,12 +22,12 @@ public class CalendarioServlet extends HttpServlet{
 	private IngredienteService ingredienteService = new IngredienteServiceImpl();
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// se llama al método listar() del servicio de ingredientes para obtener una lista de ingredientes. Esta lista se utiliza más adelante en el servlet.
-		List<Ingrediente> ingredientes = ingredienteService.listar();
-        //  Se establece un atributo de solicitud llamado "ingredientes" y se le asigna el valor de la lista de ingredientes que se obtuvo del servicio.
-		req.setAttribute("ingredientes", ingredientes);
-		// Esta línea envía la solicitud y la respuesta al servlet o JSP especificado en la URL de destino ("/calendario.jsp" en este caso). Este método de reenvío de solicitud (forward()) le permite al servlet o JSP destino tener acceso a los atributos de solicitud establecidos en el servlet actual. Esto significa que la lista de ingredientes que se estableció como un atributo de solicitud estará disponible en el JSP calendario.jsp.
-        getServletContext().getRequestDispatcher("/calendario.jsp").forward(req, resp);
+				List<Ingrediente> ingredientes = ingredienteService.listar();
+		        //  Se establece un atributo de solicitud llamado "ingredientes" y se le asigna el valor de la lista de ingredientes que se obtuvo del servicio.
+				req.setAttribute("ingredientes", ingredientes);
+				// Esta línea envía la solicitud y la respuesta al servlet o JSP especificado en la URL de destino ("/calendario.jsp" en este caso). Este método de reenvío de solicitud (forward()) le permite al servlet o JSP destino tener acceso a los atributos de solicitud establecidos en el servlet actual. Esto significa que la lista de ingredientes que se estableció como un atributo de solicitud estará disponible en el JSP calendario.jsp.
+		        getServletContext().getRequestDispatcher("/calendario.jsp").forward(req, resp);
 	}
 }	

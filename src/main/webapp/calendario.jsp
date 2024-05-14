@@ -23,7 +23,7 @@ List<Ingrediente> ingredientes = (List<Ingrediente>) request.getAttribute("ingre
 <body>
 	
 	<h3>Calendario semanal</h3>
-    <form action="/comidas/calendario" method="get">
+    <form action="/calendario" method="post">
         <table>
             <thead>
                 <tr>

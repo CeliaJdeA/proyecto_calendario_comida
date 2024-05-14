@@ -16,10 +16,8 @@ public class IngredienteMySQL {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_ingrediente")
 	private int idIngrediente;
 	private String nombre;
-	@Column(name = "fk_lista_compra")
 	private int lista;
 	
 	

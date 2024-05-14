@@ -11,7 +11,7 @@ public class EMF {
 	
 	public static EntityManagerFactory getInstance() {
 		if (emf == null)
-			emf = Persistence.createEntityManagerFactory("calendario_comidas");
+			emf = Persistence.createEntityManagerFactory("comidas");
 		return emf;
 	}
 }
