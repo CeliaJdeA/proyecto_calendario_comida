@@ -18,5 +18,4 @@ public class CalendarioImpl implements Calendario{
 	public List<Ingrediente> getIngredientes() {
 		return iDao.findAll();
 	}
-
 }

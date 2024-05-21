@@ -20,7 +20,6 @@
   </properties>
 
   <dependencies>
-	
 
 	<!-- JSTL for JSP pages -->
     <dependency>
@@ -92,6 +91,7 @@
     </dependency>
     
 </dependencies>
+
   <build>
     <finalName>${project.artifactId}</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

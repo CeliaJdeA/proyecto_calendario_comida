@@ -1,5 +1,6 @@
 package modelo;
 
+
 import javax.persistence.Column;
 
 import javax.persistence.Entity;
@@ -67,6 +68,6 @@ public class Ingrediente {
         return "Ingrediente{id=" + idIngrediente + ", nombre='" + nombre + '\'' +
                ", categoria=" + (categoria != null ? categoria.getNombre() : "null") + '}';
     }
-	
+
 	
 }
