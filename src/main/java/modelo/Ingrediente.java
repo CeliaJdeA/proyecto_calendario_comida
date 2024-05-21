@@ -1,6 +1,7 @@
 package modelo;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,6 +25,7 @@ public class Ingrediente {
 	@JoinColumn(name = "fk_categoria")
 	private Categoria categoria;
 
+
 	 // Constructor sin argumentos requerido por JPA
     public Ingrediente() {
         // Constructor vacío
@@ -35,6 +37,7 @@ public class Ingrediente {
         this.categoria = categoria;
     }
 	
+
 	public int getIdIngrediente() {
 		return idIngrediente;
 	}

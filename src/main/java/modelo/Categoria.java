@@ -22,12 +22,14 @@ public class Categoria {
 	@OneToMany(mappedBy = "categoria")
     private Set<Ingrediente> ingredientes;
 	
+
 	// Constructor sin argumento
 	public Categoria() {}
 	// Constructor con argumento para el nombre
     public Categoria(String nombre) {
         this.nombre = nombre;
     }
+
 	
 	public int getIdCategoria() {
 		return idCategoria;

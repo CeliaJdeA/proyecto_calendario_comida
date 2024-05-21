@@ -76,7 +76,9 @@
 	%>
 		<div class="second-background"></div>
         <h3>¡Bienvenido <%= (username != null) ? username : "Usuario desconocido" %>, vamos a ponernos la chaquetilla de chef!</h3>
+
         <a class="boton" href="<%= request.getContextPath() %>/calendario">Crear nuevo calendario</a>
+
         
 </body>
 </html>

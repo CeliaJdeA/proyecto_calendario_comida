@@ -1,4 +1,4 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" import="java.util.Optional, javax.servlet.http.Cookie, javax.servlet.http.HttpServletRequest, java.util.Arrays"%>
 <!DOCTYPE html>
 <html>
 <head>

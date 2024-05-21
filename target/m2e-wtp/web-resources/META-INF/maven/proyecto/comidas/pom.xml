@@ -21,6 +21,7 @@
 
   <dependencies>
 	
+
 	<!-- JSTL for JSP pages -->
     <dependency>
         <groupId>jstl</groupId>
