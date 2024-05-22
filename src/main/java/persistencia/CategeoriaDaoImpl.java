@@ -2,7 +2,6 @@ package persistencia;
 
 import java.util.List;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
@@ -10,22 +9,24 @@ import javax.persistence.TypedQuery;
 import modelo.Categoria;
 import modelo.Ingrediente;
 
-public class IngredienteDaoImpl implements IngredienteDao {
 
-    private EntityManagerFactory emf;
+public class CategeoriaDaoImpl implements CategoriaDao{
 
-    public IngredienteDaoImpl(EntityManagerFactory emf) {
-        this.emf = emf;
-    }
+	private EntityManagerFactory emf;
 
-    @Override
-    public List<Ingrediente> findAll() {
-        EntityManager em = emf.createEntityManager();
-        try {
+	public CategeoriaDaoImpl(EntityManagerFactory emf) {
+		this.emf = emf;
+	}
+	
+
+	@Override
+	public List<Categoria> findAll() {
+		EntityManager em = emf.createEntityManager();
+		try {
             em.getTransaction().begin();
-            String jpql = "select i from Ingrediente i";
-            TypedQuery<Ingrediente> q = em.createQuery(jpql, Ingrediente.class);
-            List<Ingrediente> resultado = q.getResultList();
+            String jpql = "select c from Categoria c";
+            TypedQuery<Categoria> q = em.createQuery(jpql, Categoria.class);
+            List<Categoria> resultado = q.getResultList();
             em.getTransaction().commit();
             return resultado;
         } catch (Exception e) {
@@ -38,25 +39,26 @@ public class IngredienteDaoImpl implements IngredienteDao {
         } finally {
             em.close();
         }
-    }
-
-	@Override
-	public void save (Ingrediente i) {
-		EntityManager em = emf.createEntityManager();
-		em = emf.createEntityManager();
-		em.getTransaction().begin();
-		em.merge(i);
-		em.getTransaction().commit();
-		em.close();
 	}
 
 	@Override
-	public Ingrediente findByNombre (String nombre) {
+	public void save (Categoria c) {
 		EntityManager em = emf.createEntityManager();
-		Ingrediente resu = em.find(Ingrediente.class, nombre);
+		em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(c);
+		em.getTransaction().commit();
+		em.close();
+		
+	}
+
+
+	@Override
+	public Categoria findByNombre(String nombre) {
+		EntityManager em = emf.createEntityManager();
+		Categoria resu = em.find(Categoria.class, nombre);
 		em.close();
 		return resu;
 	}
 
-	
 }

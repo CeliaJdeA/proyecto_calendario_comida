@@ -68,6 +68,4 @@ public class Ingrediente {
         return "Ingrediente{id=" + idIngrediente + ", nombre='" + nombre + '\'' +
                ", categoria=" + (categoria != null ? categoria.getNombre() : "null") + '}';
     }
-
-	
 }

@@ -78,6 +78,7 @@
         <h3>¡Bienvenido <%= (username != null) ? username : "Usuario desconocido" %>, vamos a ponernos la chaquetilla de chef!</h3>
 
         <a class="boton" href="<%= request.getContextPath() %>/calendario">Crear nuevo calendario</a>
+        <a class="boton" href="<%= request.getContextPath() %>/lista">Lista de ingredientes</a>
 
         
 </body>

@@ -9,4 +9,8 @@ public interface IngredienteDao {
 	public List<Ingrediente> findAll();
 	
 	public void save(Ingrediente i);
+	
+	public Ingrediente findByNombre (String nombre);
+	
+
 }
