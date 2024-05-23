@@ -1,6 +1,7 @@
 package controladores;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Categoria;
 import modelo.Ingrediente;
 import negocio.Calendario;
 import negocio.CalendarioImpl;
@@ -31,7 +31,8 @@ public class ListaIngredientesServlet extends HttpServlet{
 		super.init();
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("comidas");
 		IngredienteDao ingredienteDao = new IngredienteDaoImpl(emf);
-		calendario = new CalendarioImpl(ingredienteDao);
+        CategoriaDao categoriaDao = new CategeoriaDaoImpl(emf);
+        this.calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
 	}
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

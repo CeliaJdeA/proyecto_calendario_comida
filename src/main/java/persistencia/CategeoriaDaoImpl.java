@@ -54,11 +54,13 @@ public class CategeoriaDaoImpl implements CategoriaDao{
 
 
 	@Override
-	public Categoria findByNombre(String nombre) {
-		EntityManager em = emf.createEntityManager();
-		Categoria resu = em.find(Categoria.class, nombre);
-		em.close();
-		return resu;
-	}
+    public Categoria findById(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Categoria.class, id);
+        } finally {
+            em.close();
+        }
+    }
 
 }

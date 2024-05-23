@@ -11,15 +11,12 @@ import persistencia.IngredienteDao;
 public class CalendarioImpl implements Calendario{
 
 	private IngredienteDao iDao;
-	private CategoriaDao cDao;
-	
-	public CalendarioImpl(IngredienteDao iDao) {
+    private CategoriaDao cDao;
+    
+    public CalendarioImpl(IngredienteDao iDao, CategoriaDao cDao) {
         this.iDao = iDao;
+        this.cDao = cDao;
     } 
-	
-	public CalendarioImpl(CategoriaDao cDao) {
-		this.cDao = cDao;
-	}
 	
 	@Override
 	public List<Ingrediente> getIngredientes() {

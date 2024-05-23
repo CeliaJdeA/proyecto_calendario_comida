@@ -2,10 +2,13 @@ package controladores;
 
 import modelo.Ingrediente;
 
+
 import negocio.Calendario;
 import negocio.CalendarioImpl;
 import persistencia.IngredienteDao;
 import persistencia.IngredienteDaoImpl;
+import persistencia.CategoriaDao;
+import persistencia.CategeoriaDaoImpl;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -27,7 +30,8 @@ public class CalendarioServlet extends HttpServlet {
         super.init();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("comidas");
         IngredienteDao ingredienteDao = new IngredienteDaoImpl(emf);
-        calendario = new CalendarioImpl(ingredienteDao);
+        CategoriaDao categoriaDao = new CategeoriaDaoImpl(emf);
+        calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
     }
 
     @Override

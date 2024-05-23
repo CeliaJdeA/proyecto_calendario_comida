@@ -13,19 +13,23 @@ import org.junit.jupiter.api.Test;
 import modelo.Categoria;
 import modelo.Ingrediente;
 import persistencia.IngredienteDao;
+import persistencia.CategoriaDao;
 import negocio.CalendarioImpl;
 
 public class IngredienteDaoTest {
 
     private IngredienteDao ingredienteDao;
+    private CategoriaDao categoriaDao;
     private CalendarioImpl calendario;
 
     @BeforeEach
     public void setUp() {
-        // Crear una instancia de IngredienteDao mock
+        // Crear instancias de IngredienteDao y CategoriaDao mock
         ingredienteDao = mock(IngredienteDao.class);
-        // Crear una instancia de CalendarioImpl con el IngredienteDao mock
-        calendario = new CalendarioImpl(ingredienteDao);
+        categoriaDao = mock(CategoriaDao.class);
+
+        // Crear una instancia de CalendarioImpl con los DAOs mock
+        calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
     }
 
     @Test
@@ -51,5 +55,6 @@ public class IngredienteDaoTest {
         assertEquals("Frutas", resultado.get(1).getCategoria().getNombre());
     }
 }
+
 
 

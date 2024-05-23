@@ -11,5 +11,5 @@ public interface CategoriaDao {
 	
 	public void save (Categoria c);
 	
-	public Categoria findByNombre (String Nombre);
+	public Categoria findById(int id);
 }
