@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;;
 
@@ -21,6 +23,9 @@ public class Categoria {
 	private String nombre;
 	@OneToMany(mappedBy = "categoria")
     private Set<Ingrediente> ingredientes;
+	@ManyToOne
+	@JoinColumn(name = "fk_nutriente")
+	private Nutriente nutriente;
 	
 
 	// Constructor sin argumento
@@ -49,8 +54,15 @@ public class Categoria {
 	public void setIngredientes(Set<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
-	 @Override
-	    public String toString() {
-	        return "Categoria{idCategoria=" + idCategoria + ", nombre='" + nombre + '\'' + '}';
-	    }
+	 public Nutriente getNutriente() {
+		return nutriente;
+	}
+	public void setNutriente(Nutriente nutriente) {
+		this.nutriente = nutriente;
+	}
+	@Override
+	public String toString() {
+		return "Categoria{idCategoria=" + idCategoria + ", nombre='" + nombre + '\'' +
+	               ", nutriente=" + (nutriente != null ? nutriente.getNombre() : "null") + '}';
+	}
 }

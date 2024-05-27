@@ -12,5 +12,7 @@ public interface IngredienteDao {
 	
 	public Ingrediente findByNombre (String nombre);
 	
+	public Ingrediente remove (int idIngrediente);
+	
 
 }

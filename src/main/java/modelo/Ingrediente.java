@@ -1,8 +1,5 @@
 package modelo;
-
-
 import javax.persistence.Column;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-
 
 @Entity
 @Table(name = "ingredientes")
@@ -66,6 +61,6 @@ public class Ingrediente {
 	@Override
     public String toString() {
         return "Ingrediente{id=" + idIngrediente + ", nombre='" + nombre + '\'' +
-               ", categoria=" + (categoria != null ? categoria.getNombre() : "null") + '}';
+                ", categoria=" + (categoria != null ? categoria.getNombre() : "null") + '}';
     }
 }

@@ -46,11 +46,11 @@
             %>
         </select><br>
         
-        <button type="submit">Añadir Ingrediente</button>
+        <button type="submit">Añadir ingrediente</button>
     </form>
 
     <form action="<%= request.getContextPath() %>/añadir" method="get" style="display: inline;">
-        <button type="submit">Crear Nuevo Ingrediente</button>
+        <button type="submit">Crear otro ingrediente</button>
     </form>
 
     <form action="<%= request.getContextPath() %>/lista" method="get" style="display: inline;">

@@ -57,6 +57,31 @@ public class IngredienteDaoImpl implements IngredienteDao {
 		em.close();
 		return resu;
 	}
+	
+
+	 @Override
+	    public Ingrediente remove(int idIngrediente) {
+	        EntityManager em = emf.createEntityManager();
+	        try {
+	            em.getTransaction().begin();
+	            Ingrediente ingrediente = em.find(Ingrediente.class, idIngrediente);
+	            if (ingrediente != null) {
+	                em.remove(ingrediente);
+	                em.getTransaction().commit();
+	            } else {
+	                em.getTransaction().rollback();
+	            }
+	            return ingrediente;
+	        } catch (Exception e) {
+	            if (em.getTransaction().isActive()) {
+	                em.getTransaction().rollback();
+	            }
+	            e.printStackTrace();
+	            return null;
+	        } finally {
+	            em.close();
+	        }
+	    }
 
 	
 }

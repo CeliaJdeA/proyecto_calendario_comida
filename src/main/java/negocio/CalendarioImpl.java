@@ -37,4 +37,10 @@ public class CalendarioImpl implements Calendario{
 	public void addCategoria(Categoria c) {
 		cDao.save(c);
 	}
+
+	@Override
+	public void removeIngrediente(int idIngrediente) {
+		iDao.remove(idIngrediente);
+		
+	}
 }
