@@ -49,4 +49,5 @@ public class CalendarioServlet extends HttpServlet {
             throw new ServletException("Error al recuperar la lista de ingredientes", e);
         }
     }
+
 }

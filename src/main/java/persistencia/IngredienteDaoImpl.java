@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import modelo.Categoria;
 import modelo.Ingrediente;
+import modelo.Nutriente;
 
 public class IngredienteDaoImpl implements IngredienteDao {
 
@@ -83,5 +84,16 @@ public class IngredienteDaoImpl implements IngredienteDao {
 	        }
 	    }
 
-	
+	@Override
+	public List<Ingrediente> getIngConNutrientes(String nombreNutriente) {
+		EntityManager em = emf.createEntityManager();
+		try {
+			String jpql = "SELECT i FROM Ingrediente i WHERE i.categoria.nutriente.nombre = :nombreNutriente";
+			TypedQuery<Ingrediente> q = em.createQuery(jpql, Ingrediente.class);
+			q.setParameter("nombreNutriente",nombreNutriente);
+			return q.getResultList();
+		} finally {
+			em.close();
+		}
+	}
 }

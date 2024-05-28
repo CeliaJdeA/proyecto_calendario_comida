@@ -14,5 +14,7 @@ public interface IngredienteDao {
 	
 	public Ingrediente remove (int idIngrediente);
 	
+	public List<Ingrediente> getIngConNutrientes(String nombreNutriente);
+
 
 }

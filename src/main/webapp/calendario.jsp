@@ -44,6 +44,16 @@
         }
     </style>
 </head>
+
+
+	<!-- POPO UP -->
+ 	<script type="text/javascript">
+    function abrirPopup(tipo) {
+        var popup = window.open("popup?tipo=" + tipo, "Popup", "width=600,height=400");
+    }
+</script>
+    
+    
 <body>
     <h2>Calendario de Comidas</h2>
 
@@ -67,15 +77,19 @@
                     <tr>
                         <td><%= dia %></td>
                         <td>
-                            <select name="comida_<%= dia.toLowerCase() %>">
+                        	<button onclick="abrirPopup('Hidratos de carbono')">Hidratos</button>
+							<button onclick="abrirPopup('Proteínas')">Proteínas</button>
+							<button onclick="abrirPopup('Vitaminas y minerales')">Vegetales</button>
+							<button onclick="abrirPopup('Grasas')">Grasas</button>
+                            <!-- <select name="comida_<%--<%= dia.toLowerCase() %>">
                                 <%
                                     for (modelo.Ingrediente ing : ingredientes) {
                                 %>
                                     <option value="<%= ing.getIdIngrediente() %>"><%= ing.getNombre() %></option>
                                 <%
                                     }
-                                %>
-                            </select>
+                                %>--%>
+                            </select> -->
                         </td>
                         <td>
                             <select name="cena_<%= dia.toLowerCase() %>">
@@ -101,6 +115,7 @@
     <%
         }
     %>
+    
 </body>
 </html>
 

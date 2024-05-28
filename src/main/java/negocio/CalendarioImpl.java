@@ -43,4 +43,24 @@ public class CalendarioImpl implements Calendario{
 		iDao.remove(idIngrediente);
 		
 	}
+
+	@Override
+	public List<Ingrediente> getIngConHidratos() {
+		return iDao.getIngConNutrientes("Hidratos de carbono");
+	}
+
+	@Override
+	public List<Ingrediente> getIngConProteinas() {
+		return iDao.getIngConNutrientes("Proteínas");
+	}
+
+	@Override
+	public List<Ingrediente> getIngConVegetales() {
+		return iDao.getIngConNutrientes("Vitaminas y minerales");
+	}
+
+	@Override
+	public List<Ingrediente> getIngConGrasas() {
+		return iDao.getIngConNutrientes("Grasas");
+	}
 }
