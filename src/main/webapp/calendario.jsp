@@ -1,8 +1,12 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="modelo.Ingrediente" %>
+<%@ page import="com.fasterxml.jackson.core.type.TypeReference" %>
+<%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Calendario de Comidas</title>
     <style>
         body {
@@ -11,23 +15,23 @@
             align-items: center;
             height: 100vh;
             font-family: Arial, sans-serif;
-            flex-direction: column; /* Para que los elementos se apilen verticalmente */
-            background-image: url('https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg'), url('https://images.pexels.com/photos/2814828/pexels-photo-2814828.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'); /* Cambia 'ruta/a/imagen.jpg' por la ruta de tu imagen de fondo */
-            background-size: cover, cover; /* Para que las imágenes de fondo cubran todo el cuerpo */
-            background-position: center, center; /* Centra las imágenes de fondo */
+            flex-direction: column;
+            background-image: url('https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg'), url('https://images.pexels.com/photos/2814828/pexels-photo-2814828.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+            background-size: cover, cover;
+            background-position: center, center;
         }
         h2 {
             text-align: center;
-            margin-bottom: 20px; /* Espacio entre el encabezado y la tabla */
-            font-size: 40px; /* Tamaño de letra más grande */
+            margin-bottom: 20px;
+            font-size: 40px;
         }
         table {
-            width: 70%; /* Ancho de la tabla */
+            width: 70%;
             border-collapse: collapse;
-            background-color: rgba(255, 255, 255, 0.7); /* Color blanco difuminado */
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Sombra suave */
-            border-radius: 15px; /* Bordes redondeados */
-            margin-bottom: 20px; /* Espacio entre la tabla y el mensaje de no hay ingredientes */
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            margin-bottom: 20px;
         }
         th, td {
             border: 1px solid black;
@@ -35,7 +39,7 @@
             text-align: center;
         }
         th {
-            background-color: #f2f2f2; /* Color de fondo del encabezado */
+            background-color: #f2f2f2;
         }
         p {
             text-align: center;
@@ -44,23 +48,11 @@
         }
     </style>
 </head>
-
-
-	<!-- POPO UP -->
- 	<script type="text/javascript">
-    function abrirPopup(tipo) {
-        var popup = window.open("popup?tipo=" + tipo, "Popup", "width=600,height=400");
-    }
-</script>
-    
-    
 <body>
     <h2>Calendario de Comidas</h2>
-
-    <%
-        List<modelo.Ingrediente> ingredientes = (List<modelo.Ingrediente>) request.getAttribute("ingredientes");
-        if (ingredientes != null && !ingredientes.isEmpty()) {
-    %>
+        <%
+            String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+        %>
         <table>
             <thead>
                 <tr>
@@ -71,36 +63,21 @@
             </thead>
             <tbody>
                 <%
-                    String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
                     for (String dia : dias) {
                 %>
                     <tr>
                         <td><%= dia %></td>
                         <td>
-                        	<button onclick="abrirPopup('Hidratos de carbono')">Hidratos</button>
-							<button onclick="abrirPopup('Proteínas')">Proteínas</button>
-							<button onclick="abrirPopup('Vitaminas y minerales')">Vegetales</button>
-							<button onclick="abrirPopup('Grasas')">Grasas</button>
-                            <!-- <select name="comida_<%--<%= dia.toLowerCase() %>">
-                                <%
-                                    for (modelo.Ingrediente ing : ingredientes) {
-                                %>
-                                    <option value="<%= ing.getIdIngrediente() %>"><%= ing.getNombre() %></option>
-                                <%
-                                    }
-                                %>--%>
-                            </select> -->
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Hidratos de carbono">Hidratos</a>
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Proteinas">Proteinas</a>
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Vitaminas y minerales">Vegetales</a>
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Grasas">Grasas</a>
                         </td>
                         <td>
-                            <select name="cena_<%= dia.toLowerCase() %>">
-                                <%
-                                    for (modelo.Ingrediente ing : ingredientes) {
-                                %>
-                                    <option value="<%= ing.getIdIngrediente() %>"><%= ing.getNombre() %></option>
-                                <%
-                                    }
-                                %>
-                            </select>
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Hidratos de carbono">Hidratos</a>
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Proteínas">Proteinas</a>
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Vitaminas y minerales">Vegetales</a>
+                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Grasas">Grasas</a>
                         </td>
                     </tr>
                 <%
@@ -108,14 +85,24 @@
                 %>
             </tbody>
         </table>
-    <%
-        } else {
-    %>
-        <p>No hay ingredientes disponibles.</p>
-    <%
+       <%
+    // Retrieve the "ingredientesLunes" cookie
+    Cookie[] cookies = request.getCookies();
+    String ingredientesJSON = null;
+    for (Cookie cookie : cookies) {
+        if (cookie.getName().equals("ingredientesLunes")) {
+            ingredientesJSON = cookie.getValue();
+            break;
         }
-    %>
-    
+    }
+
+    // If the cookie exists, parse the JSON string and use the ingredients
+    if (ingredientesJSON != null) {
+        List<String> selectedIngredientesLunes = new ObjectMapper().readValue(ingredientesJSON, new TypeReference<List<String>>() {});
+        // Use selectedIngredientesLunes as needed
+    }
+%>
+
 </body>
 </html>
 

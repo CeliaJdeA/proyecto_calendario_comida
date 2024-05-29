@@ -16,5 +16,5 @@ public interface Calendario {
 	public List<Ingrediente> getIngConProteinas();
 	public List<Ingrediente> getIngConVegetales();
 	public List<Ingrediente> getIngConGrasas();
-	
+	public Ingrediente getIngredienteById(int id);
 }

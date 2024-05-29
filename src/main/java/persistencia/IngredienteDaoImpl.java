@@ -96,4 +96,12 @@ public class IngredienteDaoImpl implements IngredienteDao {
 			em.close();
 		}
 	}
+
+	@Override
+	public Ingrediente findById(int idIngrediente) {
+		EntityManager em = emf.createEntityManager();
+		Ingrediente i = em.find(Ingrediente.class, idIngrediente);
+		em.close();
+		return i;
+	}
 }

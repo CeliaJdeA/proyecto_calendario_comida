@@ -19,8 +19,8 @@ import persistencia.CategoriaDao;
 import persistencia.IngredienteDao;
 import persistencia.IngredienteDaoImpl;
 
-@WebServlet("/popup")
-public class PopUpServlet extends HttpServlet{
+@WebServlet("/nutrientes")
+public class ClasificaciónNutrientes extends HttpServlet{
 
 	private Calendario calendario;
 	
@@ -35,22 +35,22 @@ public class PopUpServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String tipoNutriente = req.getParameter("tipo");
-        String jspPage = "/popup.jsp"; // Valor por defecto
+        String jspPage = "/ing.jsp"; // Valor por defecto
 
         if (tipoNutriente != null) {
             List<Ingrediente> ingredientes = null;
             if (tipoNutriente.equalsIgnoreCase("Hidratos de carbono")) {
                 ingredientes = calendario.getIngConHidratos();
-                jspPage = "/popupHidratos.jsp";
+                jspPage = "/ingHidratos.jsp";
             } else if (tipoNutriente.equalsIgnoreCase("Proteínas")) {
                 ingredientes = calendario.getIngConProteinas();
-                jspPage = "/popupProteinas.jsp";
+                jspPage = "/ingProteinas.jsp";
             } else if (tipoNutriente.equalsIgnoreCase("Vitaminas y minerales")) {
                 ingredientes = calendario.getIngConVegetales();
-                jspPage = "/popupVegetales.jsp";
+                jspPage = "/ingVegetales.jsp";
             } else if (tipoNutriente.equalsIgnoreCase("Grasas")) {
                 ingredientes = calendario.getIngConGrasas();
-                jspPage = "/popupGrasas.jsp";
+                jspPage = "/ingGrasas.jsp";
             }
 
             req.setAttribute("ingConNut", ingredientes);

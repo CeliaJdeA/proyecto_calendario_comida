@@ -16,5 +16,6 @@ public interface IngredienteDao {
 	
 	public List<Ingrediente> getIngConNutrientes(String nombreNutriente);
 
+	public Ingrediente findById(int idIngrediente);
 
 }

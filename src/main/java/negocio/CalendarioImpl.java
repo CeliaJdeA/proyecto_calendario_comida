@@ -63,4 +63,9 @@ public class CalendarioImpl implements Calendario{
 	public List<Ingrediente> getIngConGrasas() {
 		return iDao.getIngConNutrientes("Grasas");
 	}
+
+	@Override
+	public Ingrediente getIngredienteById(int id) {
+		return iDao.findById(id);
+	}
 }
