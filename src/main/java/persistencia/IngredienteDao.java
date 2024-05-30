@@ -18,4 +18,6 @@ public interface IngredienteDao {
 
 	public Ingrediente findById(int idIngrediente);
 
+	// Utilizo String porque no quiero que me devuelva el objeto Ingrediente, sino el nombre del ingrediente (String)
+	public String getNombreIngPorId(String idIngrediente);
 }

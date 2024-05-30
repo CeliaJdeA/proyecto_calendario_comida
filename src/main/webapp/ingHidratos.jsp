@@ -9,47 +9,25 @@
     <title>Seleccionar Ingredientes para Lunes (Hidratos)</title>
 </head>
 <body>
-    <h1>Seleccionar Ingredientes para Lunes (Hidratos)</h1>
-
-    <%
-        // Retrieve ingredients from the request attribute
-        List<Ingrediente> ingredientes = (List<Ingrediente>) request.getAttribute("ingConNut");
-
-        // Initialize an empty list to store selected ingredients
-        List<String> selectedIngredientesLunes = new ArrayList<>();
-
-        // Check if the request contains selected ingredients for Monday (from the form submission)
-        if (request.getParameterValues("ingredientesLunes") != null) {
-            for (String ingredienteId : request.getParameterValues("ingredientesLunes")) {
-                // Find the corresponding ingredient object based on ID
-                Ingrediente ingrediente = ingredientes.stream()
-                        .filter(i -> i.getIdIngrediente() == Integer.parseInt(ingredienteId))
-                        .findFirst()
-                        .orElse(null);
-
-                if (ingrediente != null) {
-                    selectedIngredientesLunes.add(ingrediente.getNombre());
-                }
-            }
-        }
-    %>
-
-    <form action="guardarIngredientesLunes.jsp" method="post">
-        <ul>
-            <% for (Ingrediente ingrediente : ingredientes) { %>
+    <h2>Seleccionar Ingredientes - Hidratos de Carbono</h2>
+    <form action="<%= request.getContextPath() %>/guardarIngredientes" method="post">
+    	<!-- Este campo oculto envía el día de la semana al servlet GuardarIngredientesServlet cuando se envía el formulario. El valor se obtiene del parámetro de consulta llamado "dia", que probablemente se establece en la vista calendario.jsp cuando el usuario hace clic en un día específico para agregar ingredientes. -->
+        <input type="hidden" name="dia" value="<%= request.getParameter("dia") %>">
+        <input type="hidden" name="comidaCena" value="<%= request.getParameter("comidaCena") %>">
+        <ul> <!-- Itera sobre la lista de ingredientes (ingConNut) pasada desde el servlet ClasificaciónNutrientes. -->
+            <% for (Ingrediente ingrediente : (List<Ingrediente>) request.getAttribute("ingConNut")) { %>
                 <li>
-                    <label>
-                        <input type="checkbox" name="ingredientesLunes" value="<%= ingrediente.getIdIngrediente() %>"
-                               <%= selectedIngredientesLunes.contains(ingrediente.getNombre()) ? "checked" : "" %>>
+                    <label> <!-- Cada ingrediente se representa como un checkbox en un formulario. El valor de cada checkbox es el ID del ingrediente. -->
+                        <input type="checkbox" name="ingredientes" value="<%= ingrediente.getIdIngrediente() %>">
                         <%= ingrediente.getNombre() %>
                     </label>
                 </li>
             <% } %>
-        </ul>
+        </ul> <!-- Cuando el usuario hace clic en "Guardar", el formulario envía los ingredientes seleccionados al servlet GuardarIngredientesServlet. -->
         <button type="submit">Guardar</button>
     </form>
-
 </body>
+
 </html>
 
 

@@ -51,37 +51,4 @@ public class CalendarioServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Ingrediente> ingredientesSeleccionados = new ArrayList<>();
-
-        String[] dias = {"lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"};
-        for (String dia : dias) {
-            String comidaParam = request.getParameter("comida_" + dia);
-            String cenaParam = request.getParameter("cena_" + dia);
-
-            if (comidaParam != null && !comidaParam.isEmpty()) {
-                for (String idStr : comidaParam.split(",")) {
-                    int id = Integer.parseInt(idStr);
-                    Ingrediente ingrediente = calendario.getIngredienteById(id);
-                    if (ingrediente != null) {
-                        ingredientesSeleccionados.add(ingrediente);
-                    }
-                }
-            }
-
-            if (cenaParam != null && !cenaParam.isEmpty()) {
-                for (String idStr : cenaParam.split(",")) {
-                    int id = Integer.parseInt(idStr);
-                    Ingrediente ingrediente = calendario.getIngredienteById(id);
-                    if (ingrediente != null) {
-                        ingredientesSeleccionados.add(ingrediente);
-                    }
-                }
-            }
-        }
-
-        request.setAttribute("ingredientesSeleccionados", ingredientesSeleccionados);
-        request.getRequestDispatcher("/calendario.jsp").forward(request, response);
-    }
 }

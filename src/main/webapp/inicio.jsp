@@ -54,21 +54,16 @@
     </style>
 </head>
 <body>
-<%
-// Obtener el valor de la cookie "username"
-Cookie[] cookies = request.getCookies();
-String username = null;
-if (cookies != null) {
-    for (Cookie cookie : cookies) {
-        if (cookie.getName().equals("username")) {
-            username = cookie.getValue();
-            break;
+	<%
+        // Obtener el valor del atributo "username" de la sesión
+        HttpSession sesion = request.getSession(false); // No crear una nueva sesión si no existe. Esto obtiene la sesión actual sin crear una nueva si no existe. Es importante para evitar crear sesiones innecesarias.
+        String username = null; // Este bloque de código verifica si hay una sesión activa y, si es así, obtiene el valor del atributo username.
+        if (session != null) {
+            username = (String) session.getAttribute("username");
         }
-    }
-}
-%>
-<div class="second-background"></div>
-<h3>¡Bienvenido <%= (username != null) ? username : "Usuario desconocido" %>, vamos a ponernos la chaquetilla de chef!</h3>
+    %>
+    <div class="second-background"></div>
+    <h3>¡Bienvenido <%= (username != null) ? username : "Usuario desconocido" %>, vamos a ponernos la chaquetilla de chef!</h3>
 
 <a class="boton" href="<%= request.getContextPath() %>/calendario">Crear nuevo calendario</a>
 

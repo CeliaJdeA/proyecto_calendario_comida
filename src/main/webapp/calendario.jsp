@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="modelo.Ingrediente" %>
-<%@ page import="com.fasterxml.jackson.core.type.TypeReference" %>
-<%@ page import="com.fasterxml.jackson.databind.ObjectMapper" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,59 +48,56 @@
 </head>
 <body>
     <h2>Calendario de Comidas</h2>
-        <%
-            String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
-        %>
-        <table>
-            <thead>
+    <%
+        String[] dias = {"Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"};
+    %>
+    <table>
+        <thead>
+            <tr>
+                <th>Día</th>
+                <th>Comida</th>
+                <th>Cena</th>
+            </tr>
+        </thead>
+        <tbody>
+        <!-- Se utiliza un bucle for para iterar sobre la lista de días de la semana (dias), que probablemente contiene los nombres de los días como elementos. -->
+            <% for (String dia : dias) { %>
                 <tr>
-                    <th>Día</th>
-                    <th>Comida</th>
-                    <th>Cena</th>
+                    <td><%= dia %></td> <!-- Primera columna: lunes, martes... -->
+                    <td> <!-- Segunda columna: Cada enlace apunta al servlet ClasificaciónNutrientes con parámetros de consulta que especifican el tipo de nutriente (tipo), el día de la semana (dia), y si es para comida o cena (comidaCena). -->
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Hidratos de carbono&dia=<%= dia %>&comidaCena=comida">Hidratos</a>
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Proteinas&dia=<%= dia %>&comidaCena=comida">Proteinas</a>
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Vitaminas y minerales&dia=<%= dia %>&comidaCena=comida">Vegetales</a>
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Grasas&dia=<%= dia %>&comidaCena=comida">Grasas</a>
+                        <ul> <!-- Se accede a la sesión (session) para obtener las listas de ingredientes seleccionados para la comida y la cena de ese día (dia + "-comida" y dia + "-cena"). -->
+                            <% List<String> ingredientesComida = (List<String>) session.getAttribute(dia + "-comida");
+                            if (ingredientesComida != null) { // Si existen ingredientes seleccionados para la comida o la cena de ese día, se recorren las listas y se generan elementos de lista (<li>) para cada ingrediente.
+                                for (String ingrediente : ingredientesComida) {
+                                	%>
+                                    <%= ingrediente %>
+                            <% } } %>
+                        </ul>
+                    </td>
+                    <td>
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Hidratos de carbono&dia=<%= dia %>&comidaCena=cena">Hidratos</a>
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Proteinas&dia=<%= dia %>&comidaCena=cena">Proteinas</a>
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Vitaminas y minerales&dia=<%= dia %>&comidaCena=cena">Vegetales</a>
+                        <a href="<%= request.getContextPath() %>/nutrientes?tipo=Grasas&dia=<%= dia %>&comidaCena=cena">Grasas</a>
+                        <ul>
+                            <% List<String> ingredientesCena = (List<String>) session.getAttribute(dia + "-cena");
+                            if (ingredientesCena != null) {
+                                for (String ingrediente : ingredientesCena) {
+                                    %>
+                                    <li><%= ingrediente %></li>
+                            <% } } %>
+                        </ul>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <%
-                    for (String dia : dias) {
-                %>
-                    <tr>
-                        <td><%= dia %></td>
-                        <td>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Hidratos de carbono">Hidratos</a>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Proteinas">Proteinas</a>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Vitaminas y minerales">Vegetales</a>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Grasas">Grasas</a>
-                        </td>
-                        <td>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Hidratos de carbono">Hidratos</a>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Proteínas">Proteinas</a>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Vitaminas y minerales">Vegetales</a>
-                            <a href="<%= request.getContextPath() %>/nutrientes?tipo=Grasas">Grasas</a>
-                        </td>
-                    </tr>
-                <%
-                    }
-                %>
-            </tbody>
-        </table>
-       <%
-    // Retrieve the "ingredientesLunes" cookie
-    Cookie[] cookies = request.getCookies();
-    String ingredientesJSON = null;
-    for (Cookie cookie : cookies) {
-        if (cookie.getName().equals("ingredientesLunes")) {
-            ingredientesJSON = cookie.getValue();
-            break;
-        }
-    }
-
-    // If the cookie exists, parse the JSON string and use the ingredients
-    if (ingredientesJSON != null) {
-        List<String> selectedIngredientesLunes = new ObjectMapper().readValue(ingredientesJSON, new TypeReference<List<String>>() {});
-        // Use selectedIngredientesLunes as needed
-    }
-%>
-
+            <% } %>
+        </tbody>
+    </table>
+    <a href="<%= request.getContextPath() %>/inicio.jsp">Volver al inicio</a> <!-- Enlace para volver al inicio -->
 </body>
+
 </html>
 

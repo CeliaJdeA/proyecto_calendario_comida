@@ -104,4 +104,22 @@ public class IngredienteDaoImpl implements IngredienteDao {
 		em.close();
 		return i;
 	}
+
+	@Override
+	public String getNombreIngPorId(String idIngrediente) {
+		EntityManager em = emf.createEntityManager();
+	    try {
+	        // Buscar el ingrediente por su ID en la base de datos
+	        Ingrediente ingrediente = em.find(Ingrediente.class, Integer.parseInt(idIngrediente));
+	        if (ingrediente != null) {
+	            // Si se encuentra el ingrediente, retornar su nombre
+	            return ingrediente.getNombre();
+	        } else {
+	            // Si no se encuentra el ingrediente, retornar un mensaje indicando que es desconocido
+	            return "Ingrediente Desconocido";
+	        }
+	    } finally {
+	        em.close();
+	    }
+	}
 }

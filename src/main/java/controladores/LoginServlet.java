@@ -13,20 +13,22 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import services.LoginService;
 import services.LoginServiceImpl;
 
 @WebServlet("/iniciar-sesion")
 public class LoginServlet extends HttpServlet{
-	 final static String USERNAME = "calendario";
+	 final static String USERNAME = "celia";
 	 final static String PASSWORD = "comidas";
 	    
 	 @Override
 	    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	        LoginService auth = new LoginServiceImpl(); // Es una implementacion de la clase LoginServlet
-	        Optional<String> cookieOptional = auth.getUsername(req);
+	        Optional<String> usernameOptional = auth.getUsername(req);
 
-	        if (cookieOptional.isPresent()) { // Si está presente la cookie damos el mensaje de bienvenida
+	        if (usernameOptional.isPresent()) { // Si está presente la cookie damos el mensaje de bienvenida
 	            resp.setContentType("text/html;charset=UTF-8");
 	            try (PrintWriter out = resp.getWriter()) {
 	            getServletContext().getRequestDispatcher("/inicio.jsp").forward(req, resp);
@@ -48,8 +50,8 @@ public class LoginServlet extends HttpServlet{
         
         if (USERNAME.equals(username) && PASSWORD.equals(password)) {
 
-            Cookie usernameCookie = new Cookie("username", username); 
-            resp.addCookie(usernameCookie); 
+           HttpSession sesion = req.getSession();
+           sesion.setAttribute("username", username);
 
             resp.sendRedirect(req.getContextPath() + "/inicio.jsp"); 
         } else {
