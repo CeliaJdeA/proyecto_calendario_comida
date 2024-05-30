@@ -35,7 +35,7 @@ public class ClasificaciónNutrientes extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String tipoNutriente = req.getParameter("tipo");
-        String jspPage = "/ing.jsp"; // Valor por defecto
+        String jspPage = "No hay ingredientes guardados en la BBDD"; // Valor por defecto
 
         if (tipoNutriente != null) {
             List<Ingrediente> ingredientes = null;
