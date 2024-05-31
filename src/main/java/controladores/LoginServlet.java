@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet{
 	        LoginService auth = new LoginServiceImpl(); // Es una implementacion de la clase LoginServlet
 	        Optional<String> usernameOptional = auth.getUsername(req);
 
-	        if (usernameOptional.isPresent()) { // Si está presente la cookie damos el mensaje de bienvenida
+	        if (usernameOptional.isPresent()) { // Si está presente la sesion damos el mensaje de bienvenida
 	            resp.setContentType("text/html;charset=UTF-8");
 	            try (PrintWriter out = resp.getWriter()) {
 	            getServletContext().getRequestDispatcher("/inicio.jsp").forward(req, resp);

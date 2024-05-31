@@ -66,8 +66,7 @@
     <h3>¡Bienvenido <%= (username != null) ? username : "Usuario desconocido" %>, vamos a ponernos la chaquetilla de chef!</h3>
 
 <a class="boton" href="<%= request.getContextPath() %>/calendario">Crear nuevo calendario</a>
-
-<!-- Movido el botón "Lista de ingredientes" hacia abajo -->
 <a class="boton" href="<%= request.getContextPath() %>/lista">Lista de ingredientes</a>
+<a href="<%= request.getContextPath() %>/logout">Cerrar sesión</a>
 </body>
 </html>
