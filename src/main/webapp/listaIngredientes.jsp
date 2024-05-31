@@ -64,7 +64,7 @@
 <body>
     <h1>Lista de Ingredientes</h1>
     <div class="botones">
-        <a href="<%= request.getContextPath() %>/calendario" class="boton">Crear nuevo calendario</a>
+        <a href="<%= request.getContextPath() %>/calendario" class="boton">Calendario de comidas</a>
         <a href="<%= request.getContextPath() %>/añadir" class="boton">Añadir Nuevo Ingrediente</a>
         <a href="<%= request.getContextPath() %>/eliminarIngrediente" class="boton">Eliminar ingrediente</a>
     </div>

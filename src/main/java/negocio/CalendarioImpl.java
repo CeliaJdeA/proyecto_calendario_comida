@@ -1,7 +1,11 @@
 package negocio;
 
+import java.text.Collator;
+import java.util.Comparator;
 import java.util.List;
-
+import java.util.Locale;
+import java.util.Set;
+import java.util.TreeSet;
 
 import modelo.Categoria;
 import modelo.Ingrediente;
@@ -68,4 +72,31 @@ public class CalendarioImpl implements Calendario{
 	public Ingrediente getIngredienteById(int id) {
 		return iDao.findById(id);
 	}
+
+/*	Si se desea eliminar duplicados automáticamente y no se requiere un orden específico, un Set puede ser apropiado. 
+    Sin embargo, si se necesita mantener el orden de los elementos o permitir duplicados en diferentes categorías, un List 
+    sería más adecuado. En este caso, parece que un List sería más apropiado, ya que es posible que quieras mantener el orden
+    original de los ingredientes y permitir ingredientes duplicados en diferentes categorías.*/	
+	
+	@Override
+	public List<Ingrediente> ordenarIngPorCat() {
+/*      Se obtiene una lista de todos los ingredientes utilizando el método 'findAll' del IngredienteDao (iDao), 
+ 		que parece ser una fuente de datos que proporciona acceso a los ingredientes almacenados. La lista de ingredientes se 
+ 		almacena en la variable ingredientes.*/		
+		List<Ingrediente> ingredientes = iDao.findAll();
+/*		Aquí se ordena la lista de ingredientes utilizando el método sort, que toma un comparador como argumento para 
+ 		definir el orden de clasificación. Se crea un nuevo comparador anónimo que compara dos ingredientes (o1 y o2) basándose en 
+ 		el nombre de la categoría a la que pertenecen.*/		
+	    ingredientes.sort(new Comparator<Ingrediente>() {
+	        @Override
+	        public int compare(Ingrediente o1, Ingrediente o2) { // Este método devuelve un entero (int)
+/*				Se crea un objeto Collator para realizar la comparación de cadenas. Collator se usa aquí para comparar 
+ 				los nombres de las categorías en español.*/	        	
+	            Collator col = Collator.getInstance(new Locale("es"));
+	            return col.compare(o1.getCategoria().getNombre(), o2.getCategoria().getNombre());
+	        }
+	    });
+	    return ingredientes;
+	}
+
 }

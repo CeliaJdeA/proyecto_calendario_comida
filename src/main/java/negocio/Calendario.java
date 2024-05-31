@@ -1,9 +1,9 @@
 package negocio;
 import java.util.List;
+import java.util.Set;
 
 import modelo.Categoria;
 import modelo.Ingrediente;
-import modelo.Nutriente;
 
 public interface Calendario {
 
@@ -17,4 +17,5 @@ public interface Calendario {
 	public List<Ingrediente> getIngConVegetales();
 	public List<Ingrediente> getIngConGrasas();
 	public Ingrediente getIngredienteById(int id);
+	public List <Ingrediente> ordenarIngPorCat ();
 }

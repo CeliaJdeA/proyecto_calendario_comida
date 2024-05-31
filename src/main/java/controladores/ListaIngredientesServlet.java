@@ -2,6 +2,7 @@ package controladores;
 
 import java.io.IOException;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManagerFactory;
@@ -37,7 +38,7 @@ public class ListaIngredientesServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			List<Ingrediente> ingredientes = calendario.getIngredientes();
+			List<Ingrediente> ingredientes = calendario.ordenarIngPorCat();
 			request.setAttribute("ingredientes", ingredientes);
 			request.getRequestDispatcher("/listaIngredientes.jsp").forward(request, response);
 		} catch (Exception e) {
