@@ -1,5 +1,6 @@
 package persistencia;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
 
@@ -14,9 +15,12 @@ public class UsuarioDaoImpl implements UsuarioDao{
 	}
 	
 	@Override
-	public Usuario porUsername(String username) {
-		
-		return null;
+	public void save(Usuario u) {
+		EntityManager em = emf.createEntityManager();
+		em.getTransaction().begin();
+		em.merge(u);
+		em.getTransaction().commit();
+		em.close();
 	}
 
 }

@@ -9,13 +9,16 @@ import java.util.TreeSet;
 
 import modelo.Categoria;
 import modelo.Ingrediente;
+import modelo.Usuario;
 import persistencia.CategoriaDao;
 import persistencia.IngredienteDao;
+import persistencia.UsuarioDao;
 
 public class CalendarioImpl implements Calendario{
 
 	private IngredienteDao iDao;
     private CategoriaDao cDao;
+    private UsuarioDao uDao;
     
     public CalendarioImpl(IngredienteDao iDao, CategoriaDao cDao) {
         this.iDao = iDao;
@@ -97,6 +100,12 @@ public class CalendarioImpl implements Calendario{
 	        }
 	    });
 	    return ingredientes;
+	}
+
+	@Override
+	public void addUsuario(Usuario u) {
+		uDao.save(u);
+		
 	}
 
 }

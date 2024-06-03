@@ -4,6 +4,7 @@ import java.util.Set;
 
 import modelo.Categoria;
 import modelo.Ingrediente;
+import modelo.Usuario;
 
 public interface Calendario {
 
@@ -11,6 +12,7 @@ public interface Calendario {
 	public List<Categoria> getCategorias();
 	public void addIngrediente (Ingrediente i);
 	public void addCategoria (Categoria c);
+	public void addUsuario (Usuario u);
 	public void removeIngrediente (int idIngrediente);
 	public List<Ingrediente> getIngConHidratos();
 	public List<Ingrediente> getIngConProteinas();

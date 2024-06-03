@@ -4,5 +4,5 @@ import modelo.Usuario;
 
 public interface UsuarioDao {
 
-	public Usuario porUsername(String username);
+	public void save(Usuario u);
 }
