@@ -80,9 +80,9 @@
             </div>
         </div>    
     	<div>
-            <label for="contraseña">Contraseña</label>
+            <label for="password">Contraseña</label>
             <div>
-                <input type="text" name="contraseña" id="contraseña">
+                <input type="text" name="password" id="password">
             </div>
         </div>
         <div>

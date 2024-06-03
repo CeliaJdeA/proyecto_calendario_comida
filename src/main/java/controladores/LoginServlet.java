@@ -2,11 +2,13 @@ package controladores;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 
 import java.util.Optional;
 
-
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -15,54 +17,59 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import modelo.Usuario;
+import negocio.Calendario;
 import services.LoginService;
 import services.LoginServiceImpl;
+import negocio.CalendarioImpl;
+import persistencia.CategeoriaDaoImpl;
+import persistencia.CategoriaDao;
+import persistencia.IngredienteDao;
+import persistencia.IngredienteDaoImpl;
+import persistencia.UsuarioDao;
+import persistencia.UsuarioDaoImpl;
 
 @WebServlet("/iniciar-sesion")
 public class LoginServlet extends HttpServlet{
-	 final static String USERNAME = "celia";
-	 final static String PASSWORD = "comidas";
-	    
+	private Calendario calendario;
+
+    @Override
+    public void init() throws ServletException {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("comidas");
+        IngredienteDao ingredienteDao = new IngredienteDaoImpl(emf);
+        CategoriaDao categoriaDao = new CategeoriaDaoImpl(emf);
+        UsuarioDao usuarioDao = new UsuarioDaoImpl(emf);
+        this.calendario = new CalendarioImpl(ingredienteDao, categoriaDao, usuarioDao);
+    }
 	 @Override
 	    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	        LoginService auth = new LoginServiceImpl(); // Es una implementacion de la clase LoginServlet
-	        Optional<String> usernameOptional = auth.getUsername(req);
-
-	        if (usernameOptional.isPresent()) { // Si está presente la sesion damos el mensaje de bienvenida
-	            resp.setContentType("text/html;charset=UTF-8");
-	            try (PrintWriter out = resp.getWriter()) {
+		 HttpSession sesion = req.getSession(false);
+	        if (sesion != null && sesion.getAttribute("username") != null) {
 	            getServletContext().getRequestDispatcher("/inicio.jsp").forward(req, resp);
-	            }
-	        } else { // Sino, cargamos el formulario de login.html
+	        } else {
 	            getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
-	        	
 	        }	
 	    }
 	 
-/* 	 Si la autenticación es exitosa, se establece una cookie y se redirige al usuario a la página de inicio. 
-	 Si la autenticación falla, se envía un mensaje de error al cliente. */	 
+ 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String username = req.getParameter("username");
-        String password = req.getParameter("password");
-        
-        
-        
-        if (USERNAME.equals(username) && PASSWORD.equals(password)) {
-
-           HttpSession sesion = req.getSession();
-           sesion.setAttribute("username", username);
-
-            resp.sendRedirect(req.getContextPath() + "/inicio.jsp"); 
-        } else {
-        	// Credenciales incorrectas, enviar mensajes de error
-            if (!USERNAME.equals(username)) {
-                req.setAttribute("usernameError", "Usuario incorrecto");
-            }
-            if (!PASSWORD.equals(password)) {
-                req.setAttribute("passwordError", "Contraseña incorrecta");
-            }
-            req.getRequestDispatcher("/login.jsp").forward(req, resp);
-        }    
-	}
+		 String username = req.getParameter("username");
+	        String password = req.getParameter("password");
+//			Busca el usuario en la BBDD
+	        Usuario usuario = calendario.getUsuarioByUsername(username); 
+//			Si el usuario no es null y la password coincide, se crea una sesión y se redirige al usuario a inicio.jsp.
+	        if (usuario != null && usuario.getPassword().equals(password)) {
+	            HttpSession sesion = req.getSession();
+	            sesion.setAttribute("username", username);
+	            resp.sendRedirect(req.getContextPath() + "/inicio.jsp");
+	        } else {
+	            if (usuario == null) {
+	                req.setAttribute("usernameError", "Usuario incorrecto");
+	            } else {
+	                req.setAttribute("passwordError", "Contraseña incorrecta");
+	            }
+	            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+	        }
+	    }
 }

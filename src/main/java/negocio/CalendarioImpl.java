@@ -20,9 +20,10 @@ public class CalendarioImpl implements Calendario{
     private CategoriaDao cDao;
     private UsuarioDao uDao;
     
-    public CalendarioImpl(IngredienteDao iDao, CategoriaDao cDao) {
+    public CalendarioImpl(IngredienteDao iDao, CategoriaDao cDao, UsuarioDao uDao) {
         this.iDao = iDao;
         this.cDao = cDao;
+        this.uDao = uDao;
     } 
 	
 	@Override
@@ -106,6 +107,11 @@ public class CalendarioImpl implements Calendario{
 	public void addUsuario(Usuario u) {
 		uDao.save(u);
 		
+	}
+
+	@Override
+	public Usuario getUsuarioByUsername(String username) {
+		return uDao.findByUsername(username);
 	}
 
 }

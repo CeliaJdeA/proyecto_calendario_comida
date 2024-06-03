@@ -18,6 +18,8 @@ import persistencia.CategeoriaDaoImpl;
 import persistencia.CategoriaDao;
 import persistencia.IngredienteDao;
 import persistencia.IngredienteDaoImpl;
+import persistencia.UsuarioDao;
+import persistencia.UsuarioDaoImpl;
 
 @WebServlet("/eliminarIngrediente")
 public class EliminarIngredienteServlet extends HttpServlet {
@@ -29,7 +31,8 @@ public class EliminarIngredienteServlet extends HttpServlet {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("comidas");
         IngredienteDao ingredienteDao = new IngredienteDaoImpl(emf);
         CategoriaDao categoriaDao = new CategeoriaDaoImpl(emf);
-        this.calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
+        UsuarioDao usuarioDao = new UsuarioDaoImpl(emf);
+		this.calendario = new CalendarioImpl(ingredienteDao, categoriaDao, usuarioDao);
     }
 
     @Override

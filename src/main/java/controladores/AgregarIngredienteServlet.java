@@ -6,6 +6,8 @@ import negocio.Calendario;
 import negocio.CalendarioImpl;
 import persistencia.IngredienteDao;
 import persistencia.IngredienteDaoImpl;
+import persistencia.UsuarioDao;
+import persistencia.UsuarioDaoImpl;
 import persistencia.CategoriaDao;
 import persistencia.CategeoriaDaoImpl;
 
@@ -28,7 +30,8 @@ public class AgregarIngredienteServlet extends HttpServlet {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("comidas");
         IngredienteDao ingredienteDao = new IngredienteDaoImpl(emf);
         CategoriaDao categoriaDao = new CategeoriaDaoImpl(emf);
-        this.calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
+        UsuarioDao usuarioDao = new UsuarioDaoImpl(emf);
+		this.calendario = new CalendarioImpl(ingredienteDao, categoriaDao, usuarioDao);
     }
 
     @Override

@@ -13,6 +13,7 @@ public interface Calendario {
 	public void addIngrediente (Ingrediente i);
 	public void addCategoria (Categoria c);
 	public void addUsuario (Usuario u);
+	public Usuario getUsuarioByUsername(String username);
 	public void removeIngrediente (int idIngrediente);
 	public List<Ingrediente> getIngConHidratos();
 	public List<Ingrediente> getIngConProteinas();

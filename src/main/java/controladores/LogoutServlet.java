@@ -26,6 +26,6 @@ public class LogoutServlet extends HttpServlet {
             HttpSession session = req.getSession();
             session.invalidate(); // Invalida la sesion completa
         }
-        resp.sendRedirect(req.getContextPath() + "/login.jsp");
+        resp.sendRedirect(req.getContextPath() + "/index.html");
     }
 }

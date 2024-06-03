@@ -18,6 +18,8 @@ import persistencia.CategeoriaDaoImpl;
 import persistencia.CategoriaDao;
 import persistencia.IngredienteDao;
 import persistencia.IngredienteDaoImpl;
+import persistencia.UsuarioDao;
+import persistencia.UsuarioDaoImpl;
 
 @WebServlet("/nutrientes")
 public class ClasificaciónNutrientes extends HttpServlet{
@@ -29,8 +31,9 @@ public class ClasificaciónNutrientes extends HttpServlet{
 		 super.init();
 	     EntityManagerFactory emf = Persistence.createEntityManagerFactory("comidas");
 	     IngredienteDao ingredienteDao = new IngredienteDaoImpl(emf);
-	     CategoriaDao categoriaDao = new CategeoriaDaoImpl(emf);
-	     calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
+	        CategoriaDao categoriaDao = new CategeoriaDaoImpl(emf);
+	        UsuarioDao usuarioDao = new UsuarioDaoImpl(emf);
+			this.calendario = new CalendarioImpl(ingredienteDao, categoriaDao, usuarioDao);
 	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
