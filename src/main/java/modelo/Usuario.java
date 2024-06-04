@@ -1,10 +1,13 @@
 package modelo;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,14 +23,15 @@ public class Usuario {
 	private String password;
 	private String nombre;
 	private String apellido;
-	@OneToOne(mappedBy = "usuario")
-	private Calendario calendario;
+	@OneToMany(mappedBy = "usuario")
+	private List<Calendario> calendario;
 	
 	
-	public Calendario getCalendario() {
+	
+	public List<Calendario> getCalendario() {
 		return calendario;
 	}
-	public void setCalendario(Calendario calendario) {
+	public void setCalendario(List<Calendario> calendario) {
 		this.calendario = calendario;
 	}
 	public String getNombre() {

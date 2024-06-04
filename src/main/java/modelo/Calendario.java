@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,12 +24,12 @@ public class Calendario {
 	private String dia;
 	private String comidaCena;
 	private String tipoNutriente;
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "fk_usuario")
 	private Usuario usuario;
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "fk_ingrediente")
-	private List <Ingrediente> ingrediente;
+	private Ingrediente ingrediente;
 	
 	
 	public int getIdCalendario() {
@@ -61,10 +62,10 @@ public class Calendario {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	public List<Ingrediente> getIngrediente() {
+	public Ingrediente getIngrediente() {
 		return ingrediente;
 	}
-	public void setIngrediente(List<Ingrediente> ingrediente) {
+	public void setIngrediente(Ingrediente ingrediente) {
 		this.ingrediente = ingrediente;
 	}
 	

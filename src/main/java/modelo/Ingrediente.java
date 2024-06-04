@@ -1,4 +1,6 @@
 package modelo;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,16 +23,8 @@ public class Ingrediente {
 	@ManyToOne
 	@JoinColumn(name = "fk_categoria")
 	private Categoria categoria;
-	public Calendario getCalendario() {
-		return calendario;
-	}
-
-	public void setCalendario(Calendario calendario) {
-		this.calendario = calendario;
-	}
-
-	//@ManyToOne(mappedBy = "ingrediente")
-	private Calendario calendario;
+	@OneToMany(mappedBy = "ingrediente")
+	private List<Calendario> calendario;
 
 
 	 // Constructor sin argumentos requerido por JPA
@@ -43,6 +38,15 @@ public class Ingrediente {
         this.categoria = categoria;
     }
 	
+
+   
+	public List<Calendario> getCalendario() {
+		return calendario;
+	}
+
+	public void setCalendario(List<Calendario> calendario) {
+		this.calendario = calendario;
+	}
 
 	public int getIdIngrediente() {
 		return idIngrediente;
