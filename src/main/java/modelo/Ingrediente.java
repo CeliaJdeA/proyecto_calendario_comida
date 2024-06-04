@@ -20,6 +20,16 @@ public class Ingrediente {
 	@ManyToOne
 	@JoinColumn(name = "fk_categoria")
 	private Categoria categoria;
+	public Calendario getCalendario() {
+		return calendario;
+	}
+
+	public void setCalendario(Calendario calendario) {
+		this.calendario = calendario;
+	}
+
+	//@ManyToOne(mappedBy = "ingrediente")
+	private Calendario calendario;
 
 
 	 // Constructor sin argumentos requerido por JPA
