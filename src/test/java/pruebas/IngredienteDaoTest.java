@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import modelo.Categoria;
 import modelo.Ingrediente;
 import persistencia.IngredienteDao;
+import persistencia.UsuarioDao;
 import persistencia.CategoriaDao;
 import negocio.CalendarioImpl;
 
@@ -20,6 +21,7 @@ public class IngredienteDaoTest {
 
     private IngredienteDao ingredienteDao;
     private CategoriaDao categoriaDao;
+    private UsuarioDao usuarioDao;
     private CalendarioImpl calendario;
 
     @BeforeEach
@@ -29,7 +31,7 @@ public class IngredienteDaoTest {
         categoriaDao = mock(CategoriaDao.class);
 
         // Crear una instancia de CalendarioImpl con los DAOs mock
-        calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
+        calendario = new CalendarioImpl(ingredienteDao, categoriaDao, usuarioDao);
     }
 
     @Test

@@ -14,12 +14,14 @@ import modelo.Categoria;
 import modelo.Ingrediente;
 import persistencia.CategoriaDao;
 import persistencia.IngredienteDao;
+import persistencia.UsuarioDao;
 import negocio.CalendarioImpl;
 
 public class CalendarioImplTest {
 
     private CalendarioImpl calendario;
     private IngredienteDao ingredienteDao;
+    private UsuarioDao usuarioDao;
     private CategoriaDao categoriaDao;
 
     @BeforeEach
@@ -31,7 +33,7 @@ public class CalendarioImplTest {
         categoriaDao = mock(CategoriaDao.class);
 
         // Crea una instancia de CalendarioImpl con los mocks de IngredienteDao y CategoriaDao
-        calendario = new CalendarioImpl(ingredienteDao, categoriaDao);
+        calendario = new CalendarioImpl(ingredienteDao, categoriaDao, usuarioDao);
     }
 
     @Test

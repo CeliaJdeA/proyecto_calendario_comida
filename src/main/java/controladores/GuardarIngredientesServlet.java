@@ -19,7 +19,8 @@ import javax.servlet.http.HttpSession;
 import persistencia.IngredienteDao;
 import persistencia.IngredienteDaoImpl;
 
-/* Este servlet maneja la solicitud POST enviada desde ingHidratos.jsp. Guarda los ingredientes seleccionados en la sesión del usuario, utilizando el día de la semana y el tipo de comida como claves.*/
+/* Este servlet maneja la solicitud POST enviada desde ingHidratos.jsp. Guarda los ingredientes seleccionados en la sesión del usuario, 
+ * utilizando el día de la semana y el tipo de comida como claves.*/
 
 @WebServlet("/guardarIngredientes")
 public class GuardarIngredientesServlet extends HttpServlet {

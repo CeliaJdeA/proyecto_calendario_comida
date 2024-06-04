@@ -25,6 +25,7 @@
             <% } %>
         </ul> <!-- Cuando el usuario hace clic en "Guardar", el formulario envía los ingredientes seleccionados al servlet GuardarIngredientesServlet. -->
         <button type="submit">Guardar</button>
+        <a href="<%= request.getContextPath() %>/calendario.jsp">Volver</a>
     </form>
 </body>
 
