@@ -24,14 +24,14 @@ public class Usuario {
 	private String nombre;
 	private String apellido;
 	@OneToMany(mappedBy = "usuario")
-	private List<Calendario> calendario;
+	private List<CalendarioClase> calendario;
 	
 	
 	
-	public List<Calendario> getCalendario() {
+	public List<CalendarioClase> getCalendario() {
 		return calendario;
 	}
-	public void setCalendario(List<Calendario> calendario) {
+	public void setCalendario(List<CalendarioClase> calendario) {
 		this.calendario = calendario;
 	}
 	public String getNombre() {

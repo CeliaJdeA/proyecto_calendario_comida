@@ -5,8 +5,9 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
-import modelo.Calendario;
+import modelo.CalendarioClase;
 import modelo.Usuario;
 
 public class CalendarioDaoImplClase implements CalendarioDaoClase{
@@ -18,22 +19,43 @@ public class CalendarioDaoImplClase implements CalendarioDaoClase{
 	    }
 
 		@Override
-		public void save(Calendario calendario) {
-			// TODO Auto-generated method stub
-			
+		public void save(CalendarioClase calendario) {
+			EntityManager em = emf.createEntityManager();
+			em = emf.createEntityManager();
+			em.getTransaction().begin();
+			em.merge(calendario);
+			em.getTransaction().commit();
+			em.close();	
 		}
 
 		@Override
-		public List<Calendario> findByUsuario(Usuario usuario) {
-			// TODO Auto-generated method stub
-			return null;
+		public List<CalendarioClase> findByUsuario(Usuario usuario) {
+			EntityManager em = emf.createEntityManager();
+			try {
+				String jpql = "SELECT c FROM Calendario c WHERE c.usuario = :usuario";
+				TypedQuery<CalendarioClase> q = em.createQuery(jpql, CalendarioClase.class);
+				q.setParameter("usuario", usuario);
+				return q.getResultList();
+			} finally {
+				em.close();
+			}
 		}
 
 		@Override
-		public List<Calendario> findByUsuarioAndDiaAndComidaCenaAndTipoNutriente(Usuario usuario, String dia,
+		public List<CalendarioClase> findByUsuarioAndDiaAndComidaCenaAndTipoNutriente(Usuario usuario, String dia,
 				String comidaCena, String tipoNutriente) {
-			// TODO Auto-generated method stub
-			return null;
+			EntityManager em = emf.createEntityManager();
+			try {
+				String jpql = "SELECT c FROM Calendario c WHERE c.usuario = :usuario AND c.dia = :dia AND c.comidaCena = :comidaCena AND c.tipoNutriente = :tipoNutriente";
+				TypedQuery<CalendarioClase> q = em.createQuery(jpql, CalendarioClase.class);
+				q.setParameter("usuario", usuario);
+				q.setParameter("dia", dia);
+				q.setParameter("comidaCena", comidaCena);
+				q.setParameter("tipoNutriente", tipoNutriente);
+				return q.getResultList();
+			} finally {
+				em.close();
+			}
 		}
 	
 

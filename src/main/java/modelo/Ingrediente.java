@@ -24,7 +24,7 @@ public class Ingrediente {
 	@JoinColumn(name = "fk_categoria")
 	private Categoria categoria;
 	@OneToMany(mappedBy = "ingrediente")
-	private List<Calendario> calendario;
+	private List<CalendarioClase> calendario;
 
 
 	 // Constructor sin argumentos requerido por JPA
@@ -40,11 +40,11 @@ public class Ingrediente {
 	
 
    
-	public List<Calendario> getCalendario() {
+	public List<CalendarioClase> getCalendario() {
 		return calendario;
 	}
 
-	public void setCalendario(List<Calendario> calendario) {
+	public void setCalendario(List<CalendarioClase> calendario) {
 		this.calendario = calendario;
 	}
 

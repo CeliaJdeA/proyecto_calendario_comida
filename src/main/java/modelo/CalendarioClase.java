@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "calendario")
-public class Calendario {
+public class CalendarioClase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

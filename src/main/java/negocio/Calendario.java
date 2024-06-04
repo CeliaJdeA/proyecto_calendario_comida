@@ -1,7 +1,7 @@
 package negocio;
 import java.util.List;
 
-
+import modelo.CalendarioClase;
 import modelo.Categoria;
 import modelo.Ingrediente;
 import modelo.Usuario;
@@ -21,5 +21,6 @@ public interface Calendario {
 	public List<Ingrediente> getIngConGrasas();
 	public Ingrediente getIngredienteById(int id);
 	public List <Ingrediente> ordenarIngPorCat ();
-	
+	public void guardarIngredienteEnCalendario(Usuario usuario, String dia, String comidaCena, String tipoNutriente, String ingrediente);
+    public List<CalendarioClase> obtenerCalendarioPorUsuario(Usuario usuario);
 }

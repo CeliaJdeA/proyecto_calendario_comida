@@ -1,15 +1,18 @@
 package negocio;
 
 import java.text.Collator;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.TreeSet;
 
+import modelo.CalendarioClase;
 import modelo.Categoria;
 import modelo.Ingrediente;
 import modelo.Usuario;
+import persistencia.CalendarioDaoClase;
 import persistencia.CategoriaDao;
 import persistencia.IngredienteDao;
 import persistencia.UsuarioDao;
@@ -19,6 +22,7 @@ public class CalendarioImpl implements Calendario{
 	private IngredienteDao iDao;
     private CategoriaDao cDao;
     private UsuarioDao uDao;
+    private CalendarioDaoClase calDao;
     
     public CalendarioImpl(IngredienteDao iDao, CategoriaDao cDao, UsuarioDao uDao) {
         this.iDao = iDao;
@@ -112,6 +116,27 @@ public class CalendarioImpl implements Calendario{
 	@Override
 	public Usuario getUsuarioByUsername(String username) {
 		return uDao.findByUsername(username);
+	}
+
+	@Override
+	public void guardarIngredienteEnCalendario(Usuario usuario, String dia, String comidaCena, String tipoNutriente,
+			String ingrediente) {
+		Ingrediente ingrediente1 = iDao.findByNombre(ingrediente);
+        if (ingrediente1 != null) {
+            CalendarioClase calendario = new CalendarioClase();
+            calendario.setUsuario(usuario);
+            calendario.setDia(dia);
+            calendario.setComidaCena(comidaCena);
+            calendario.setTipoNutriente(tipoNutriente);
+            calendario.setIngrediente(ingrediente1);
+            calDao.save(calendario);
+        }
+		
+	}
+
+	@Override
+	public List<CalendarioClase> obtenerCalendarioPorUsuario(Usuario usuario) {
+		return calDao.findByUsuario(usuario);
 	}
 
 }
