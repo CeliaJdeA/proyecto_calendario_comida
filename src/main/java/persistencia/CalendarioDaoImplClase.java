@@ -8,6 +8,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
 
 import modelo.CalendarioClase;
+import modelo.Ingrediente;
 import modelo.Usuario;
 
 public class CalendarioDaoImplClase implements CalendarioDaoClase{
@@ -22,7 +23,6 @@ public class CalendarioDaoImplClase implements CalendarioDaoClase{
 		public void save(CalendarioClase calendario) {
 			EntityManager em = emf.createEntityManager();
 			em = emf.createEntityManager();
-			em.getTransaction().begin();
 			em.merge(calendario);
 			em.getTransaction().commit();
 			em.close();	
@@ -56,6 +56,30 @@ public class CalendarioDaoImplClase implements CalendarioDaoClase{
 			} finally {
 				em.close();
 			}
+		}
+
+		@Override
+		public CalendarioClase remove(int idCalendario) {
+			 EntityManager em = emf.createEntityManager();
+		        try {
+		            em.getTransaction().begin();
+		            CalendarioClase cal = em.find(CalendarioClase.class, idCalendario);
+		            if (cal != null) {
+		                em.remove(cal);
+		                em.getTransaction().commit();
+		            } else {
+		                em.getTransaction().rollback();
+		            }
+		            return cal;
+		        } catch (Exception e) {
+		            if (em.getTransaction().isActive()) {
+		                em.getTransaction().rollback();
+		            }
+		            e.printStackTrace();
+		            return null;
+		        } finally {
+		            em.close();
+		        }
 		}
 	
 

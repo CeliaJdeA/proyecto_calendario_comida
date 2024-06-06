@@ -1,0 +1,35 @@
+@charset "UTF-8";
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    background-image: url('https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 35px;
+}
+
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    border-radius: 15px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.boton:hover {
+    background-color: #ffa366;
+    border-color: #ffa366;
+    color: #fff;
+}

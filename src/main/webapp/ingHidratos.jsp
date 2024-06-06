@@ -6,7 +6,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Seleccionar Ingredientes para Lunes (Hidratos)</title>
+    <title>Hidratos</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estiloBase.css">
 </head>
 <body>
     <h2>Seleccionar Ingredientes - Hidratos de Carbono</h2>

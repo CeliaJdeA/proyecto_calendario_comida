@@ -139,4 +139,6 @@ public class CalendarioImpl implements Calendario{
 		return calDao.findByUsuario(usuario);
 	}
 
+	
+
 }
