@@ -3,7 +3,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+
     font-family: Arial, sans-serif;
     flex-direction: column;
     background-image: url('https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg');

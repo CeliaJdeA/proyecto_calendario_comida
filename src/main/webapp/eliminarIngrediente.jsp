@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>Seleccionar Ingredientes a Eliminar</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/formEliminar.css">
 </head>
 <body>
     <h1>Seleccionar Ingredientes a Eliminar</h1>
@@ -27,7 +28,7 @@
     <form action="<%= request.getContextPath() %>/eliminarIngrediente" method="post">
         <table>
             <tr>
-                <th>Seleccionar</th>
+                <th></th>
                 <th>Ingrediente</th>
                 <th>Categoría</th>
             </tr>
@@ -55,9 +56,7 @@
         <input type="submit" value="Eliminar Ingredientes Seleccionados">
     </form>
 
-    <form action="<%= request.getContextPath() %>/lista" method="get" style="display: inline;">
-        <button type="submit">Volver a la Lista de Ingredientes</button>
-    </form>
+    <a href="<%= request.getContextPath() %>/lista" class="boton">Volver a la lista de Ingredientes</a>
 </body>
 </html>
 

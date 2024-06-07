@@ -5,6 +5,7 @@
 <html>
 <head>
     <title>Añadir Nuevo Ingrediente</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/formAñadir.css">
 </head>
 <body>
     <h1>Añadir Nuevo Ingrediente</h1>
@@ -49,8 +50,6 @@
         <button type="submit">Añadir ingrediente</button>
     </form>
 
-    <form action="<%= request.getContextPath() %>/lista" method="get" style="display: inline;">
-        <button type="submit">Volver a la Lista de Ingredientes</button>
-    </form>
+    <a href="<%= request.getContextPath() %>/lista" class="boton">Volver a la lista de Ingredientes</a>
 </body>
 </html>

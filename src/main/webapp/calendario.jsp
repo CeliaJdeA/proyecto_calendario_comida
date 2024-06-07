@@ -8,45 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Calendario de Comidas</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            font-family: Arial, sans-serif;
-            flex-direction: column;
-            background-image: url('https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg'), url('https://images.pexels.com/photos/2814828/pexels-photo-2814828.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
-            background-size: cover, cover;
-            background-position: center, center;
-        }
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 40px;
-        }
-        table {
-            width: 70%;
-            border-collapse: collapse;
-            background-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 10px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        p {
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-        }
-    </style>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/calendario.css">
 </head>
 <body>
     <h2>Calendario de Comidas</h2>

@@ -45,7 +45,11 @@ public class AgregarIngredienteServlet extends HttpServlet {
         }
         request.getRequestDispatcher("/añadirIngrediente.jsp").forward(request, response);
     }
-
+    
+/*  Sobreescribimos el método doPost(), que maneja las solicitudes POST. Aquí obtenemos los parámetros nombre y categoria 
+    del formulario enviado por el usuario. Luego, validamos si estos campos están vacíos. Si alguno está vacío, configuramos 
+    un mensaje de error y redirigimos al método doGet() para mostrar la página JSP con el mensaje de error correspondiente. */
+    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -57,7 +61,10 @@ public class AgregarIngredienteServlet extends HttpServlet {
             doGet(request, response);
             return;
         }
-
+/*		Si los campos no están vacíos, intentamos convertir el ID de la categoría a un entero. Luego, obtenemos la categoría 
+		correspondiente del calendario. Si la categoría existe, creamos un nuevo objeto Ingrediente, lo configuramos con el nombre y 
+		la categoría proporcionados, y lo añadimos al calendario. Finalmente, configuramos un mensaje de éxito y redirigimos al método 
+		doGet() para mostrar la página JSP con el mensaje de éxito correspondiente.*/
         try {
             int categoriaId = Integer.parseInt(categoriaIdStr);
             Categoria categoria = calendario.getCategorias().stream()
@@ -75,7 +82,8 @@ public class AgregarIngredienteServlet extends HttpServlet {
             } else {
                 request.setAttribute("error", "Categoría no encontrada.");
             }
-
+/*			Si ocurre una excepción al convertir el ID de la categoría a un entero, configuramos un mensaje de error y redirigimos al 
+    		método doGet() para mostrar la página JSP con el mensaje de error correspondiente.*/
             doGet(request, response);
         } catch (NumberFormatException e) {
             request.setAttribute("error", "ID de categoría no válido.");

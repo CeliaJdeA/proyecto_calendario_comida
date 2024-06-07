@@ -1,0 +1,74 @@
+@charset "UTF-8";
+		body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            flex-direction: column;
+            background-image: url('https://images.pexels.com/photos/7130557/pexels-photo-7130557.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 35px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px; /* Ajustar el tamaño del formulario */
+        }
+
+        input[type="text"], select {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px; /* Bordes redondeados */
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 20px; /* Bordes redondeados */
+            background-color: #ffa366; /* Color naranja */
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transiciones para el cambio de color */
+        }
+
+        button:hover {
+            background-color: #ff8c1a; /* Naranja más oscuro en hover */
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 2px solid #000; /* Color del borde */
+            border-radius: 15px; /* Bordes un poco menos redondeados */
+            text-decoration: none;
+            color: #000; /* Color del texto */
+            font-weight: bold;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* Transición para el cambio de color */
+            margin: 10px 0; /* Añadido un margen entre los botones */
+            text-align: center; /* Centrar el texto */
+        }
+
+        a:hover {
+            background-color: #ffa366; /* Naranja más claro */
+            border-color: #ffa366; /* Color del borde en hover */
+            color: #fff; /* Color del texto en hover */
+        }
+
+        p {
+            color: red;
+        }
